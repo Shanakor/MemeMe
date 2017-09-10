@@ -54,12 +54,12 @@ class ViewController: UIViewController {
     private func initTextViews(){
         topTextField.defaultTextAttributes = memeTextAttributes
         topTextField.text = DefaultTexts.top
-        topTextField.delegate = self
+        topTextField.delegate = MemeTextFieldDelegate(defaultText: DefaultTexts.top)
         topTextField.textAlignment = .center
 
         bottomTextField.defaultTextAttributes = memeTextAttributes
         bottomTextField.text = DefaultTexts.bottom
-        bottomTextField.delegate = self
+        bottomTextField.delegate = MemeTextFieldDelegate(defaultText: DefaultTexts.bottom)
         bottomTextField.textAlignment = .center
     }
     
@@ -113,20 +113,5 @@ extension ViewController: UIImagePickerControllerDelegate, UINavigationControlle
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
-    }
-}
-
-// MARK: Delegate for TextViews
-extension ViewController: UITextFieldDelegate{
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        if textField.text == DefaultTexts.bottom || textField.text == DefaultTexts.top{
-            textField.text = ""
-        }
-    }
-
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-    
-        return false
     }
 }
