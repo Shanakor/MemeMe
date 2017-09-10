@@ -31,8 +31,10 @@ class ViewController: UIViewController {
     // MARK: Properties
     private var imagePicker: UIImagePickerController!
     
-    // MARK: Initialisation
+    // MARK: System Events
     override func viewDidLoad() {
+        super.viewDidLoad()
+        
         initUIImagePickerController()
     }
     
@@ -43,7 +45,10 @@ class ViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
         initTextViews()
+        subscribeToKeyboardNotifications()
     }
     
     private func initTextViews(){
@@ -58,9 +63,41 @@ class ViewController: UIViewController {
         bottomTextField.textAlignment = .center
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        unsubscribeFromKeyboardNotifications()
+    }
+    
     // MARK: IBActions
     @IBAction func presentImagePickerController(_ sender: Any) {
         present(imagePicker, animated: true, completion: nil)
+    }
+    
+    // MARK: Keyboard helper methods
+    private func subscribeToKeyboardNotifications(){
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: .UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: .UIKeyboardWillHide, object: nil)
+    }
+    
+    private func unsubscribeFromKeyboardNotifications(){
+        NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillHide, object: nil)
+    }
+    
+    func keyboardWillShow(_ notification: Notification){
+        view.frame.origin.y -= getKeyboardHeight(notification)
+    }
+    
+    private func getKeyboardHeight(_ notification: Notification) -> CGFloat{
+        let userInfo = notification.userInfo
+        let keyboardSize = userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue
+        
+        return keyboardSize.cgRectValue.height
+    }
+    
+    func keyBoardWillHide(_ notification: Notification){
+        view.frame.origin.y = 0
     }
 }
 
