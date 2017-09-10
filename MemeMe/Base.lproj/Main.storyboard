@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -34,24 +35,47 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="uze-4j-PDo">
                                 <rect key="frame" x="0.0" y="20" width="375" height="603"/>
                             </imageView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6dx-98-6fI">
+                                <rect key="frame" x="16" y="40" width="343" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zat-gb-FWH">
+                                <rect key="frame" x="16" y="573" width="343" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="zat-gb-FWH" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="3fX-dx-lPR"/>
+                            <constraint firstItem="Je4-gu-wKp" firstAttribute="top" secondItem="zat-gb-FWH" secondAttribute="bottom" constant="20" id="6c6-5d-8Jk"/>
+                            <constraint firstItem="zat-gb-FWH" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="AqM-vm-saf"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="6dx-98-6fI" secondAttribute="trailing" id="CM6-6B-2zc"/>
                             <constraint firstAttribute="trailing" secondItem="uze-4j-PDo" secondAttribute="trailing" id="X0T-87-foX"/>
                             <constraint firstItem="uze-4j-PDo" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="abY-yl-jYF"/>
+                            <constraint firstItem="6dx-98-6fI" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="avc-Ma-Veo"/>
+                            <constraint firstItem="6dx-98-6fI" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="20" id="cdF-ZH-SOl"/>
                             <constraint firstItem="Je4-gu-wKp" firstAttribute="top" secondItem="uze-4j-PDo" secondAttribute="bottom" id="dEZ-gP-XlL"/>
                             <constraint firstAttribute="trailing" secondItem="Je4-gu-wKp" secondAttribute="trailing" id="gH1-CW-qmo"/>
+                            <constraint firstItem="6dx-98-6fI" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="hbH-em-aof"/>
                             <constraint firstItem="Je4-gu-wKp" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="jJL-W7-vku"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Je4-gu-wKp" secondAttribute="bottom" id="mGx-wy-bcE"/>
                             <constraint firstItem="uze-4j-PDo" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="tBC-tp-ip6"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="zat-gb-FWH" secondAttribute="trailing" id="twT-uC-wbJ"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="bottomTextField" destination="zat-gb-FWH" id="pYR-kA-kHK"/>
                         <outlet property="imageView" destination="uze-4j-PDo" id="kdB-3z-c0d"/>
+                        <outlet property="topTextField" destination="6dx-98-6fI" id="4Zq-xQ-wda"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="32.799999999999997" y="38.23088455772114"/>
         </scene>
     </scenes>
 </document>

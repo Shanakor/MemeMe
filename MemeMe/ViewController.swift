@@ -12,16 +12,33 @@ class ViewController: UIViewController {
     //MARK: Constants
     private let sourceType = UIImagePickerControllerSourceType.savedPhotosAlbum
     
+    fileprivate struct DefaultTexts{
+        static let top = "TOP"
+        static let bottom = "BOTTOM"
+    }
+    
     // MARK: IBOutlets
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var topTextField: UITextField!
+    @IBOutlet weak var bottomTextField: UITextField!
+    
 
     // MARK: Properties
     private var imagePicker: UIImagePickerController!
     
     // MARK: Initialisation
     override func viewDidLoad() {
+        // Init UIImagerPickerController
         imagePicker = UIImagePickerController()
+        imagePicker.sourceType = sourceType
         imagePicker.delegate = self
+        
+        // Init TextViews
+        topTextField.text = DefaultTexts.top
+        topTextField.delegate = self
+        
+        bottomTextField.text = DefaultTexts.bottom
+        bottomTextField.delegate = self
     }
     
     // MARK: IBActions
@@ -40,5 +57,20 @@ extension ViewController: UIImagePickerControllerDelegate, UINavigationControlle
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
+    }
+}
+
+// MARK: Delegate for TextViews
+extension ViewController: UITextFieldDelegate{
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField.text == DefaultTexts.bottom || textField.text == DefaultTexts.top{
+            textField.text = ""
+        }
+    }
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+    
+        return false
     }
 }
