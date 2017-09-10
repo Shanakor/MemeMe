@@ -104,9 +104,9 @@ class ViewController: UIViewController {
 // MARK: Delegate for picking an image from the photo library
 extension ViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        dismiss(animated: true, completion: {
-            self.imageView.image = (info[UIImagePickerControllerOriginalImage] as! UIImage)
-        })
+        self.imageView.image = (info[UIImagePickerControllerOriginalImage] as! UIImage)
+        
+        dismiss(animated: true, completion: nil)
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
