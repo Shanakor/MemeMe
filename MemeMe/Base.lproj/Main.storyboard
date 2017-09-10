@@ -87,21 +87,21 @@
                         <outlet property="cameraBarButton" destination="SEe-7B-eGC" id="8hy-I6-E1c"/>
                         <outlet property="imageView" destination="uze-4j-PDo" id="kdB-3z-c0d"/>
                         <outlet property="navigationBar" destination="IRn-iZ-y5O" id="uC2-Ii-hfl"/>
+                        <outlet property="shareButton" destination="VBv-CV-gdh" id="OfM-RS-dG9"/>
                         <outlet property="toolBar" destination="Je4-gu-wKp" id="hcY-g8-iYr"/>
                         <outlet property="topTextField" destination="6dx-98-6fI" id="4Zq-xQ-wda"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="584" y="38"/>
+            <point key="canvasLocation" x="914" y="38"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="QqA-Cg-C9g">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dEq-3W-cAU" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="9il-pU-r0R" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Kp1-KW-AfZ">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Kp1-KW-AfZ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -110,6 +110,7 @@
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="pxF-wq-8lf"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dEq-3W-cAU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="32.799999999999997" y="38.23088455772114"/>
         </scene>

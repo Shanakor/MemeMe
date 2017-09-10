@@ -32,6 +32,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var cameraBarButton: UIBarButtonItem!
     @IBOutlet weak var navigationBar: UINavigationItem!
     @IBOutlet weak var toolBar: UIToolbar!
+    @IBOutlet weak var shareButton: UIBarButtonItem!
 
     // MARK: Properties
     private var savedPhotosImagePicker: UIImagePickerController!
@@ -42,6 +43,10 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         initUIImagePickerControllers()
+        initTextViews()
+
+        shareButton.isEnabled = false
+        cameraBarButton.isEnabled = (cameraImagePicker != nil)
     }
     
     private func initUIImagePickerControllers(){
@@ -56,29 +61,22 @@ class ViewController: UIViewController {
         }
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        initTextViews()
-        initBarButtonItems()
-        
-        subscribeToKeyboardNotifications()
-    }
-    
-    private func initBarButtonItems(){
-        cameraBarButton.isEnabled = (cameraImagePicker != nil)
-    }
-    
     private func initTextViews(){
         topTextField.defaultTextAttributes = memeTextAttributes
         topTextField.text = DefaultTexts.top
         topTextField.delegate = self
         topTextField.textAlignment = .center
-
+        
         bottomTextField.defaultTextAttributes = memeTextAttributes
         bottomTextField.text = DefaultTexts.bottom
         bottomTextField.delegate = self
         bottomTextField.textAlignment = .center
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        subscribeToKeyboardNotifications()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -169,6 +167,7 @@ class ViewController: UIViewController {
 extension ViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         self.imageView.image = (info[UIImagePickerControllerOriginalImage] as! UIImage)
+        self.shareButton.isEnabled = true
         
         dismiss(animated: true, completion: nil)
     }
