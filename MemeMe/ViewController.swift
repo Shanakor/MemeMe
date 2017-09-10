@@ -17,26 +17,38 @@ class ViewController: UIViewController {
         static let bottom = "BOTTOM"
     }
     
+    private let memeTextAttributes: [String: Any] = [
+        NSStrokeColorAttributeName: UIColor.black,
+        NSForegroundColorAttributeName: UIColor.white,
+        NSFontAttributeName: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
+        NSStrokeWidthAttributeName: 2.0]
+    
     // MARK: IBOutlets
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var topTextField: UITextField!
     @IBOutlet weak var bottomTextField: UITextField!
-    
 
     // MARK: Properties
     private var imagePicker: UIImagePickerController!
     
     // MARK: Initialisation
     override func viewDidLoad() {
-        // Init UIImagerPickerController
+        initUIImagePickerController()
+        initTextViews()
+    }
+    
+    private func initUIImagePickerController(){
         imagePicker = UIImagePickerController()
         imagePicker.sourceType = sourceType
         imagePicker.delegate = self
-        
-        // Init TextViews
+    }
+    
+    private func initTextViews(){
+        topTextField.defaultTextAttributes = memeTextAttributes
         topTextField.text = DefaultTexts.top
         topTextField.delegate = self
         
+        bottomTextField.defaultTextAttributes = memeTextAttributes
         bottomTextField.text = DefaultTexts.bottom
         bottomTextField.delegate = self
     }
@@ -47,7 +59,7 @@ class ViewController: UIViewController {
     }
 }
 
-// MARK: Delegate for picking an image from the photo library.
+// MARK: Delegate for picking an image from the photo library
 extension ViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         dismiss(animated: true, completion: {
