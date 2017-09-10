@@ -30,6 +30,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var topTextField: UITextField!
     @IBOutlet weak var bottomTextField: UITextField!
     @IBOutlet weak var cameraBarButton: UIBarButtonItem!
+    @IBOutlet weak var navigationBar: UINavigationItem!
+    @IBOutlet weak var toolBar: UIToolbar!
 
     // MARK: Properties
     private var savedPhotosImagePicker: UIImagePickerController!
@@ -70,12 +72,12 @@ class ViewController: UIViewController {
     private func initTextViews(){
         topTextField.defaultTextAttributes = memeTextAttributes
         topTextField.text = DefaultTexts.top
-        topTextField.delegate = MemeTextFieldDelegate(defaultText: DefaultTexts.top)
+        topTextField.delegate = self
         topTextField.textAlignment = .center
 
         bottomTextField.defaultTextAttributes = memeTextAttributes
         bottomTextField.text = DefaultTexts.bottom
-        bottomTextField.delegate = MemeTextFieldDelegate(defaultText: DefaultTexts.bottom)
+        bottomTextField.delegate = self
         bottomTextField.textAlignment = .center
     }
     
@@ -97,6 +99,41 @@ class ViewController: UIViewController {
         else if button.tag == SourceTypes.camera.rawValue && cameraImagePicker != nil{
             present(cameraImagePicker!, animated: true, completion: nil)
         }
+    }
+    
+    @IBAction func shareMeme(_ sender: Any) {
+        let meme = generateMeme()
+        let activityViewController = UIActivityViewController(activityItems: [meme.memedImage], applicationActivities: nil)
+
+        activityViewController.completionWithItemsHandler = {
+            (activity, success, items, error) in
+                self.dismiss(animated: true, completion: nil)
+        }
+        
+        present(activityViewController, animated: true, completion: nil)
+    }
+    
+    private func generateMeme() -> Meme{
+        let topText = topTextField.text == nil ? "" : topTextField.text!
+        let bottomText = topTextField.text == nil ? "" : bottomTextField.text!
+        
+        return Meme(topText: topText, bottomText: bottomText, originalImage: self.imageView.image!, memedImage: generateMemedImage())
+    }
+    
+    private func generateMemedImage() -> UIImage {
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
+        toolBar.isHidden = true
+        
+        // Render view to an image
+        UIGraphicsBeginImageContext(self.view.frame.size)
+        view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
+        let memedImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
+        toolBar.isHidden = false
+        
+        return memedImage
     }
     
     // MARK: Keyboard helper methods
@@ -138,5 +175,20 @@ extension ViewController: UIImagePickerControllerDelegate, UINavigationControlle
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
+    }
+}
+
+// MARK: Delegate for the UITextFields
+extension ViewController: UITextFieldDelegate{
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField.text == DefaultTexts.bottom || textField.text == DefaultTexts.top{
+            textField.text = ""
+        }
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        
+        return false
     }
 }
