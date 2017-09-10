@@ -96,7 +96,7 @@ class ViewController: UIViewController {
         return keyboardSize.cgRectValue.height
     }
     
-    func keyBoardWillHide(_ notification: Notification){
+    func keyboardWillHide(_ notification: Notification){
         view.frame.origin.y = 0
     }
 }
