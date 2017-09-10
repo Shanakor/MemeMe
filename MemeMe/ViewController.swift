@@ -20,8 +20,8 @@ class ViewController: UIViewController {
     private let memeTextAttributes: [String: Any] = [
         NSStrokeColorAttributeName: UIColor.black,
         NSForegroundColorAttributeName: UIColor.white,
-        NSFontAttributeName: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
-        NSStrokeWidthAttributeName: 2.0]
+        NSFontAttributeName: UIFont(name: "Impact", size: 40)!,
+        NSStrokeWidthAttributeName: -2.0]
     
     // MARK: IBOutlets
     @IBOutlet weak var imageView: UIImageView!
@@ -56,7 +56,7 @@ class ViewController: UIViewController {
         topTextField.text = DefaultTexts.top
         topTextField.delegate = self
         topTextField.textAlignment = .center
-        
+
         bottomTextField.defaultTextAttributes = memeTextAttributes
         bottomTextField.text = DefaultTexts.bottom
         bottomTextField.delegate = self
