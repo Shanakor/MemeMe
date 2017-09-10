@@ -146,7 +146,7 @@ class ViewController: UIViewController {
     }
     
     func keyboardWillShow(_ notification: Notification){
-        if view.frame.origin.y == 0{
+        if bottomTextField.isFirstResponder && view.frame.origin.y == 0{
             view.frame.origin.y -= getKeyboardHeight(notification)
         }
     }
