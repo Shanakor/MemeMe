@@ -10,7 +10,9 @@ import UIKit
 
 class ViewController: UIViewController {
     //MARK: Constants
-    private let sourceType = UIImagePickerControllerSourceType.savedPhotosAlbum
+    private enum SourceTypes: Int{
+        case camera = 0, savedPhotosAlbum
+    }
     
     fileprivate struct DefaultTexts{
         static let top = "TOP"
@@ -27,28 +29,42 @@ class ViewController: UIViewController {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var topTextField: UITextField!
     @IBOutlet weak var bottomTextField: UITextField!
+    @IBOutlet weak var cameraBarButton: UIBarButtonItem!
 
     // MARK: Properties
-    private var imagePicker: UIImagePickerController!
+    private var savedPhotosImagePicker: UIImagePickerController!
+    private var cameraImagePicker: UIImagePickerController?
     
     // MARK: System Events
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        initUIImagePickerController()
+        initUIImagePickerControllers()
     }
     
-    private func initUIImagePickerController(){
-        imagePicker = UIImagePickerController()
-        imagePicker.sourceType = sourceType
-        imagePicker.delegate = self
+    private func initUIImagePickerControllers(){
+        savedPhotosImagePicker = UIImagePickerController()
+        savedPhotosImagePicker.sourceType = .savedPhotosAlbum
+        savedPhotosImagePicker.delegate = self
+        
+        if UIImagePickerController.isSourceTypeAvailable(.camera){
+            cameraImagePicker = UIImagePickerController()
+            cameraImagePicker?.sourceType = .camera
+            cameraImagePicker?.delegate = self
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         initTextViews()
+        initBarButtonItems()
+        
         subscribeToKeyboardNotifications()
+    }
+    
+    private func initBarButtonItems(){
+        cameraBarButton.isEnabled = (cameraImagePicker != nil)
     }
     
     private func initTextViews(){
@@ -71,7 +87,16 @@ class ViewController: UIViewController {
     
     // MARK: IBActions
     @IBAction func presentImagePickerController(_ sender: Any) {
-        present(imagePicker, animated: true, completion: nil)
+        guard let button = sender as? UIBarButtonItem else{
+            return
+        }
+        
+        if button.tag == SourceTypes.savedPhotosAlbum.rawValue{
+            present(savedPhotosImagePicker, animated: true, completion: nil)
+        }
+        else if button.tag == SourceTypes.camera.rawValue && cameraImagePicker != nil{
+            present(cameraImagePicker!, animated: true, completion: nil)
+        }
     }
     
     // MARK: Keyboard helper methods

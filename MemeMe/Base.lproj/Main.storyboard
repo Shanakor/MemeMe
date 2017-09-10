@@ -40,11 +40,19 @@
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Je4-gu-wKp">
                                 <rect key="frame" x="0.0" y="623" width="375" height="44"/>
                                 <items>
-                                    <barButtonItem title="Pick Image" id="oC7-QX-u3j">
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="z2F-T2-OMz"/>
+                                    <barButtonItem systemItem="camera" id="SEe-7B-eGC">
+                                        <connections>
+                                            <action selector="presentImagePickerController:" destination="BYZ-38-t0r" id="Bb0-qd-SWz"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="dUb-fV-Ga8"/>
+                                    <barButtonItem tag="1" title="Album" id="oC7-QX-u3j">
                                         <connections>
                                             <action selector="presentImagePickerController:" destination="BYZ-38-t0r" id="UbB-be-rq1"/>
                                         </connections>
                                     </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="V4j-7x-ozx"/>
                                 </items>
                             </toolbar>
                         </subviews>
@@ -69,6 +77,7 @@
                     </view>
                     <connections>
                         <outlet property="bottomTextField" destination="zat-gb-FWH" id="pYR-kA-kHK"/>
+                        <outlet property="cameraBarButton" destination="SEe-7B-eGC" id="8hy-I6-E1c"/>
                         <outlet property="imageView" destination="uze-4j-PDo" id="kdB-3z-c0d"/>
                         <outlet property="topTextField" destination="6dx-98-6fI" id="4Zq-xQ-wda"/>
                     </connections>
