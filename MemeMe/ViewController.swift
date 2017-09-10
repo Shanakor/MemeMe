@@ -47,10 +47,12 @@ class ViewController: UIViewController {
         topTextField.defaultTextAttributes = memeTextAttributes
         topTextField.text = DefaultTexts.top
         topTextField.delegate = self
+        topTextField.textAlignment = .center
         
         bottomTextField.defaultTextAttributes = memeTextAttributes
         bottomTextField.text = DefaultTexts.bottom
         bottomTextField.delegate = self
+        bottomTextField.textAlignment = .center
     }
     
     // MARK: IBActions
