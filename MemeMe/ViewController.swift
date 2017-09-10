@@ -34,13 +34,16 @@ class ViewController: UIViewController {
     // MARK: Initialisation
     override func viewDidLoad() {
         initUIImagePickerController()
-        initTextViews()
     }
     
     private func initUIImagePickerController(){
         imagePicker = UIImagePickerController()
         imagePicker.sourceType = sourceType
         imagePicker.delegate = self
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        initTextViews()
     }
     
     private func initTextViews(){
