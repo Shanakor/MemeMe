@@ -194,7 +194,7 @@ extension ViewController: UITextFieldDelegate{
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
+        self.topTextField.isFirstResponder ? (_ = self.bottomTextField.becomeFirstResponder()) : (_ = textField.resignFirstResponder())
         
         return false
     }
