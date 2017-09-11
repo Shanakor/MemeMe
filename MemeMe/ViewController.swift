@@ -63,14 +63,14 @@ class ViewController: UIViewController {
     
     private func initTextViews(){
         topTextField.defaultTextAttributes = memeTextAttributes
+        topTextField.textAlignment = .center
         topTextField.text = DefaultTexts.top
         topTextField.delegate = self
-        topTextField.textAlignment = .center
         
         bottomTextField.defaultTextAttributes = memeTextAttributes
+        bottomTextField.textAlignment = .center
         bottomTextField.text = DefaultTexts.bottom
         bottomTextField.delegate = self
-        bottomTextField.textAlignment = .center
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -101,8 +101,9 @@ class ViewController: UIViewController {
     
     @IBAction func shareMeme(_ sender: Any) {
         let meme = generateMeme()
+        
         let activityViewController = UIActivityViewController(activityItems: [meme.memedImage], applicationActivities: nil)
-
+        
         activityViewController.completionWithItemsHandler = {
             (activity, success, items, error) in
                 self.dismiss(animated: true, completion: nil)
@@ -123,6 +124,7 @@ class ViewController: UIViewController {
         toolBar.isHidden = true
         
         // Render view to an image
+        // Parameter 0.0 is required, so the generated meme is not blurry.
         UIGraphicsBeginImageContextWithOptions(self.view.frame.size, false, 0.0)
         view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
         let memedImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
@@ -146,7 +148,7 @@ class ViewController: UIViewController {
     }
     
     func keyboardWillShow(_ notification: Notification){
-        if bottomTextField.isFirstResponder && view.frame.origin.y == 0{
+        if bottomTextField.isFirstResponder{
             view.frame.origin.y -= getKeyboardHeight(notification)
         }
     }
