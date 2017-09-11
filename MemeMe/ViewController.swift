@@ -83,12 +83,26 @@ class ViewController: UIViewController {
         super.viewWillAppear(animated)
         
         subscribeToKeyboardNotifications()
+        subscribeToDeviceOrientationChangeNotifications()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
         unsubscribeFromKeyboardNotifications()
+        unsubscribeFromDeviceOrientationChangeNotifications()
+    }
+    
+    private func subscribeToDeviceOrientationChangeNotifications(){
+        NotificationCenter.default.addObserver(self, selector: #selector(orientationDidChange(_:)), name: .UIDeviceOrientationDidChange, object: nil)
+    }
+    
+    private func unsubscribeFromDeviceOrientationChangeNotifications(){
+        NotificationCenter.default.removeObserver(self, name: .UIDeviceOrientationDidChange, object: nil)
+    }
+    
+    func orientationDidChange(_ notification:Notification){
+        repositionTextFields()
     }
     
     // MARK: IBActions
@@ -169,24 +183,9 @@ class ViewController: UIViewController {
     func keyboardWillHide(_ notification: Notification){
         view.frame.origin.y = 0
     }
-}
-
-// MARK: Delegate for picking an image from the photo library
-extension ViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        self.imageView.image = (info[UIImagePickerControllerOriginalImage] as! UIImage)
-        
-        repositionTextFields()
-        
-        shareButton.isEnabled = true
-        topTextField.isHidden = false
-        bottomTextField.isHidden = false
-        topTextField.becomeFirstResponder()
-        
-        dismiss(animated: true, completion: nil)
-    }
     
-    private func repositionTextFields(){
+    // MARK: Positioning TextFields
+    fileprivate func repositionTextFields(){
         // Remove previous helper view.
         topTextField.removeFromSuperview()
         bottomTextField.removeFromSuperview()
@@ -215,6 +214,22 @@ extension ViewController: UIImagePickerControllerDelegate, UINavigationControlle
         
         containingImageHelperView?.addSubview(bottomTextField)
         containingImageHelperView!.addConstraints([leadingConstraint, trailingConstraint, bottomConstraint])
+    }
+}
+
+// MARK: Delegate for picking an image from the photo library
+extension ViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        self.imageView.image = (info[UIImagePickerControllerOriginalImage] as! UIImage)
+        
+        repositionTextFields()
+        
+        shareButton.isEnabled = true
+        topTextField.isHidden = false
+        bottomTextField.isHidden = false
+        topTextField.becomeFirstResponder()
+        
+        dismiss(animated: true, completion: nil)
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
