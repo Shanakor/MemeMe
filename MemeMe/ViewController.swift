@@ -25,6 +25,8 @@ class ViewController: UIViewController {
         NSFontAttributeName: UIFont(name: "Impact", size: 40)!,
         NSStrokeWidthAttributeName: -2.0]
     
+    fileprivate let textMargin: CGFloat = 18
+    
     // MARK: IBOutlets
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var topTextField: UITextField!
@@ -37,6 +39,8 @@ class ViewController: UIViewController {
     // MARK: Properties
     private var savedPhotosImagePicker: UIImagePickerController!
     private var cameraImagePicker: UIImagePickerController?
+    
+    fileprivate var containingImageHelperView: UIView?
     
     // MARK: System Events
     override func viewDidLoad() {
@@ -172,12 +176,45 @@ extension ViewController: UIImagePickerControllerDelegate, UINavigationControlle
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         self.imageView.image = (info[UIImagePickerControllerOriginalImage] as! UIImage)
         
-        self.shareButton.isEnabled = true
-        self.topTextField.isHidden = false
-        self.bottomTextField.isHidden = false
-        self.topTextField.becomeFirstResponder()
+        repositionTextFields()
+        
+        shareButton.isEnabled = true
+        topTextField.isHidden = false
+        bottomTextField.isHidden = false
+        topTextField.becomeFirstResponder()
         
         dismiss(animated: true, completion: nil)
+    }
+    
+    private func repositionTextFields(){
+        // Remove previous helper view.
+        topTextField.removeFromSuperview()
+        bottomTextField.removeFromSuperview()
+        containingImageHelperView?.removeFromSuperview()
+        
+        // Create new helper view.
+        containingImageHelperView = UIView(frame: imageView.containingImageRectangle!)
+        view.addSubview(containingImageHelperView!)
+        
+        positionTextFieldsInsideHelperView()
+    }
+    
+    private func positionTextFieldsInsideHelperView(){
+        // Top TextField.
+        var leadingConstraint = NSLayoutConstraint(item: topTextField, attribute: .leading, relatedBy: .equal, toItem: containingImageHelperView, attribute: .leading, multiplier: 1, constant: textMargin)
+        var trailingConstraint = NSLayoutConstraint(item: topTextField, attribute: .trailing, relatedBy: .equal, toItem: containingImageHelperView, attribute: .trailing, multiplier: 1, constant: -textMargin)
+        let topConstraint = NSLayoutConstraint(item: topTextField, attribute: .top, relatedBy: .equal, toItem: containingImageHelperView, attribute: .top, multiplier: 1, constant: textMargin)
+        
+        containingImageHelperView?.addSubview(topTextField)
+        containingImageHelperView!.addConstraints([leadingConstraint, trailingConstraint, topConstraint])
+        
+        // Bottom TextField.
+        leadingConstraint = NSLayoutConstraint(item: bottomTextField, attribute: .leading, relatedBy: .equal, toItem: containingImageHelperView, attribute: .leading, multiplier: 1, constant: textMargin)
+        trailingConstraint = NSLayoutConstraint(item: bottomTextField, attribute: .trailing, relatedBy: .equal, toItem: containingImageHelperView, attribute: .trailing, multiplier: 1, constant: -textMargin)
+        let bottomConstraint = NSLayoutConstraint(item: bottomTextField, attribute: .bottom, relatedBy: .equal, toItem: containingImageHelperView, attribute: .bottom, multiplier: 1, constant: -textMargin)
+        
+        containingImageHelperView?.addSubview(bottomTextField)
+        containingImageHelperView!.addConstraints([leadingConstraint, trailingConstraint, bottomConstraint])
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {

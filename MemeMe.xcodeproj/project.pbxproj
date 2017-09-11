@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D1B598AC1F66B38200EDBEEF /* ScaledImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B598AB1F66B38200EDBEEF /* ScaledImageViewExtension.swift */; };
 		D1C0C6C61F657FF7002B1E89 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C0C6C51F657FF7002B1E89 /* AppDelegate.swift */; };
 		D1C0C6C81F657FF7002B1E89 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C0C6C71F657FF7002B1E89 /* ViewController.swift */; };
 		D1C0C6CB1F657FF7002B1E89 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1C0C6C91F657FF7002B1E89 /* Main.storyboard */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D1B598AB1F66B38200EDBEEF /* ScaledImageViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScaledImageViewExtension.swift; sourceTree = "<group>"; };
 		D1C0C6C21F657FF7002B1E89 /* MemeMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MemeMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1C0C6C51F657FF7002B1E89 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D1C0C6C71F657FF7002B1E89 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -66,6 +68,7 @@
 				D1C0C6CE1F657FF7002B1E89 /* LaunchScreen.storyboard */,
 				D1C0C6D11F657FF7002B1E89 /* Info.plist */,
 				D1C0C6E21F65D5C7002B1E89 /* Meme.swift */,
+				D1B598AB1F66B38200EDBEEF /* ScaledImageViewExtension.swift */,
 			);
 			path = MemeMe;
 			sourceTree = "<group>";
@@ -152,6 +155,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D1B598AC1F66B38200EDBEEF /* ScaledImageViewExtension.swift in Sources */,
 				D1C0C6C81F657FF7002B1E89 /* ViewController.swift in Sources */,
 				D1C0C6E31F65D5C7002B1E89 /* Meme.swift in Sources */,
 				D1C0C6C61F657FF7002B1E89 /* AppDelegate.swift in Sources */,
