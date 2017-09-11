@@ -102,7 +102,10 @@ class ViewController: UIViewController {
     }
     
     func orientationDidChange(_ notification:Notification){
-        repositionTextFields()
+        // So repositioning is not called when the app intially starts.
+        if containingImageHelperView != nil{
+            repositionTextFields()
+        }
     }
     
     // MARK: IBActions
