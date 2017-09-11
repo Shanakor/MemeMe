@@ -62,11 +62,13 @@ class ViewController: UIViewController {
     }
     
     private func initTextViews(){
+        topTextField.isHidden = true
         topTextField.defaultTextAttributes = memeTextAttributes
         topTextField.textAlignment = .center
         topTextField.text = DefaultTexts.top
         topTextField.delegate = self
         
+        bottomTextField.isHidden = true
         bottomTextField.defaultTextAttributes = memeTextAttributes
         bottomTextField.textAlignment = .center
         bottomTextField.text = DefaultTexts.bottom
@@ -169,7 +171,10 @@ class ViewController: UIViewController {
 extension ViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         self.imageView.image = (info[UIImagePickerControllerOriginalImage] as! UIImage)
+        
         self.shareButton.isEnabled = true
+        self.topTextField.isHidden = false
+        self.bottomTextField.isHidden = false
         
         dismiss(animated: true, completion: nil)
     }
