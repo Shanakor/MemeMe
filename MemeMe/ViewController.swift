@@ -128,6 +128,9 @@ class ViewController: UIViewController {
     }
     
     @IBAction func shareMeme(_ sender: Any) {
+        topTextField.resignFirstResponder()
+        bottomTextField.resignFirstResponder()
+        
         let meme = generateMeme()
         
         let activityViewController = UIActivityViewController(activityItems: [meme.memedImage], applicationActivities: nil)
