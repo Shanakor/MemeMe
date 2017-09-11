@@ -175,6 +175,7 @@ extension ViewController: UIImagePickerControllerDelegate, UINavigationControlle
         self.shareButton.isEnabled = true
         self.topTextField.isHidden = false
         self.bottomTextField.isHidden = false
+        self.topTextField.becomeFirstResponder()
         
         dismiss(animated: true, completion: nil)
     }
