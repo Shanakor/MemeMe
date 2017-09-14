@@ -39,6 +39,7 @@ class ViewController: UIViewController {
     // MARK: Properties
     private var savedPhotosImagePicker: UIImagePickerController!
     private var cameraImagePicker: UIImagePickerController?
+    private var meme: Meme
     
     fileprivate var containingImageHelperView: UIView?
     
@@ -125,20 +126,20 @@ class ViewController: UIViewController {
     @IBAction func shareMeme(_ sender: Any) {
         topTextField.resignFirstResponder()
         bottomTextField.resignFirstResponder()
-        
-        let meme = generateMeme()
+        meme = createMeme()
         
         let activityViewController = UIActivityViewController(activityItems: [meme.memedImage], applicationActivities: nil)
         
         activityViewController.completionWithItemsHandler = {
             (activity, success, items, error) in
                 self.dismiss(animated: true, completion: nil)
+                self.save()
         }
         
         present(activityViewController, animated: true, completion: nil)
     }
     
-    private func generateMeme() -> Meme{
+    private func createMeme() -> Meme{
         let topText = topTextField.text == nil ? "" : topTextField.text!
         let bottomText = topTextField.text == nil ? "" : bottomTextField.text!
         
@@ -163,6 +164,11 @@ class ViewController: UIViewController {
     private func toggleNavigationUIElements(hidden isHidden: Bool){
         self.navigationController?.setNavigationBarHidden(isHidden, animated: false)
         toolBar.isHidden = isHidden
+    }
+    
+    // MARK: Data persistence methods
+    private func save(){
+        // TODO: Add code for MemeMe 2.0
     }
     
     // MARK: Keyboard helper methods
