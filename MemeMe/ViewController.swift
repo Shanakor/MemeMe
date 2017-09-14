@@ -65,23 +65,18 @@ class ViewController: UIViewController {
         }
     }
     
-    private func initTextFields(){
-        topTextField.isHidden = true
-        topTextField.defaultTextAttributes = memeTextAttributes
-        topTextField.textAlignment = .center
-        topTextField.delegate = self
-        
-        bottomTextField.isHidden = true
-        bottomTextField.defaultTextAttributes = memeTextAttributes
-        bottomTextField.textAlignment = .center
-        bottomTextField.delegate = self
-        
-        initTextFieldTexts()
+    fileprivate func initTextFields(){
+        configure(textField: topTextField, text: DefaultTexts.top)
+        configure(textField: bottomTextField, text: DefaultTexts.bottom)
     }
     
-    fileprivate func initTextFieldTexts(){
-        topTextField.text = DefaultTexts.top
-        bottomTextField.text = DefaultTexts.bottom
+    private func configure(textField: UITextField, text: String){
+        textField.isHidden = true
+        textField.defaultTextAttributes = memeTextAttributes
+        textField.textAlignment = .center
+        textField.delegate = self
+        
+        textField.text = text
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -151,8 +146,7 @@ class ViewController: UIViewController {
     }
     
     private func generateMemedImage() -> UIImage {
-        self.navigationController?.setNavigationBarHidden(true, animated: false)
-        toolBar.isHidden = true
+        toggleNavigationUIElements(hidden: true)
         
         // Render view to an image
         // Parameter 0.0 is required, so the generated meme is not blurry.
@@ -161,10 +155,14 @@ class ViewController: UIViewController {
         let memedImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
         
-        self.navigationController?.setNavigationBarHidden(false, animated: false)
-        toolBar.isHidden = false
+        toggleNavigationUIElements(hidden: false)
         
         return memedImage
+    }
+    
+    private func toggleNavigationUIElements(hidden isHidden: Bool){
+        self.navigationController?.setNavigationBarHidden(isHidden, animated: false)
+        toolBar.isHidden = isHidden
     }
     
     // MARK: Keyboard helper methods
@@ -234,7 +232,7 @@ extension ViewController: UIImagePickerControllerDelegate, UINavigationControlle
         self.imageView.image = (info[UIImagePickerControllerOriginalImage] as! UIImage)
         
         repositionTextFields()
-        initTextFieldTexts()
+        initTextFields()
         
         shareButton.isEnabled = true
         topTextField.isHidden = false
