@@ -47,7 +47,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         initUIImagePickerControllers()
-        initTextFields()
+        configureTextFields()
 
         shareButton.isEnabled = false
         cameraBarButton.isEnabled = (cameraImagePicker != nil)
@@ -65,7 +65,7 @@ class ViewController: UIViewController {
         }
     }
     
-    fileprivate func initTextFields(){
+    fileprivate func configureTextFields(){
         configure(textField: topTextField, text: DefaultTexts.top)
         configure(textField: bottomTextField, text: DefaultTexts.bottom)
     }
@@ -232,7 +232,7 @@ extension ViewController: UIImagePickerControllerDelegate, UINavigationControlle
         self.imageView.image = (info[UIImagePickerControllerOriginalImage] as! UIImage)
         
         repositionTextFields()
-        initTextFields()
+        configureTextFields()
         
         shareButton.isEnabled = true
         topTextField.isHidden = false
