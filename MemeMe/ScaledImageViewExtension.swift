@@ -9,9 +9,10 @@
 import UIKit
 
 extension UIImageView{
-    /**
-     This method only works, when the contentmode aspectFit is assumed.
-    **/
+    
+    /// This method mimics the native calculations of an UIImageView when in contentMode aspectFit. 
+    /// When another contentMode is set, this property simply returns nil. 
+    /// It returns a CGRect with the size of the actual displayed image.
     var containingImageRectangle: CGRect? {
         get{
             guard self.contentMode == .scaleAspectFit else{
