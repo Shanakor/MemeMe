@@ -39,7 +39,7 @@ class ViewController: UIViewController {
     // MARK: Properties
     private var savedPhotosImagePicker: UIImagePickerController!
     private var cameraImagePicker: UIImagePickerController?
-    private var meme: Meme
+    private var meme: Meme?
     
     fileprivate var containingImageHelperView: UIView?
     
@@ -128,7 +128,7 @@ class ViewController: UIViewController {
         bottomTextField.resignFirstResponder()
         meme = createMeme()
         
-        let activityViewController = UIActivityViewController(activityItems: [meme.memedImage], applicationActivities: nil)
+        let activityViewController = UIActivityViewController(activityItems: [meme!.memedImage], applicationActivities: nil)
         
         activityViewController.completionWithItemsHandler = {
             (activity, success, items, error) in
