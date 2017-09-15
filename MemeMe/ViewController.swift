@@ -130,10 +130,12 @@ class ViewController: UIViewController {
         
         let activityViewController = UIActivityViewController(activityItems: [meme!.memedImage], applicationActivities: nil)
         
-        activityViewController.completionWithItemsHandler = {
-            (activity, success, items, error) in
-                self.dismiss(animated: true, completion: nil)
+        activityViewController.completionWithItemsHandler = { (activity, success, items, error) in
+            self.dismiss(animated: true, completion: nil)
+            
+            if success{
                 self.save()
+            }
         }
         
         present(activityViewController, animated: true, completion: nil)
