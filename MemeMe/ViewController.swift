@@ -39,7 +39,7 @@ class ViewController: UIViewController {
     // MARK: Properties
     private var savedPhotosImagePicker: UIImagePickerController!
     private var cameraImagePicker: UIImagePickerController?
-    private var meme: Meme?
+    private var memedImage: UIImage?
     
     fileprivate var containingImageHelperView: UIView?
     
@@ -126,9 +126,9 @@ class ViewController: UIViewController {
     @IBAction func shareMeme(_ sender: Any) {
         topTextField.resignFirstResponder()
         bottomTextField.resignFirstResponder()
-        meme = createMeme()
+        memedImage = generateMemedImage()
         
-        let activityViewController = UIActivityViewController(activityItems: [meme!.memedImage], applicationActivities: nil)
+        let activityViewController = UIActivityViewController(activityItems: [memedImage!], applicationActivities: nil)
         
         activityViewController.completionWithItemsHandler = { (activity, success, items, error) in
             self.dismiss(animated: true, completion: nil)
@@ -139,13 +139,6 @@ class ViewController: UIViewController {
         }
         
         present(activityViewController, animated: true, completion: nil)
-    }
-    
-    private func createMeme() -> Meme{
-        let topText = topTextField.text == nil ? "" : topTextField.text!
-        let bottomText = topTextField.text == nil ? "" : bottomTextField.text!
-        
-        return Meme(topText: topText, bottomText: bottomText, originalImage: self.imageView.image!, memedImage: generateMemedImage())
     }
     
     private func generateMemedImage() -> UIImage {
@@ -170,7 +163,17 @@ class ViewController: UIViewController {
     
     // MARK: Data persistence methods
     private func save(){
-        // TODO: Add code for MemeMe 2.0
+        let meme = createMeme()
+        
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.memes.append(meme)
+    }
+    
+    private func createMeme() -> Meme{
+        let topText = topTextField.text == nil ? "" : topTextField.text!
+        let bottomText = topTextField.text == nil ? "" : bottomTextField.text!
+        
+        return Meme(topText: topText, bottomText: bottomText, originalImage: self.imageView.image!, memedImage: memedImage!)
     }
     
     // MARK: Keyboard helper methods
