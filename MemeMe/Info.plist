@@ -2,14 +2,16 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>To save a meme, we need to access your file system.</string>
 	<key>NSCameraUsageDescription</key>
 	<string>To record a meme, we need to access your camera.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>How else would you create funny memes?</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Impact.ttf</string>
 	</array>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>How else would you create funny memes?</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>
