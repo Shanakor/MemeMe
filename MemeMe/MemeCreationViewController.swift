@@ -35,7 +35,8 @@ class MemeCreationViewController: UIViewController {
     @IBOutlet weak var navigationBar: UINavigationItem!
     @IBOutlet weak var toolBar: UIToolbar!
     @IBOutlet weak var shareButton: UIBarButtonItem!
-
+    @IBOutlet weak var cancelBarButton: UIBarButtonItem!
+    
     // MARK: Properties
     private var savedPhotosImagePicker: UIImagePickerController!
     private var cameraImagePicker: UIImagePickerController?
@@ -52,6 +53,10 @@ class MemeCreationViewController: UIViewController {
 
         shareButton.isEnabled = false
         cameraBarButton.isEnabled = (cameraImagePicker != nil)
+        
+        if (UIApplication.shared.delegate as! AppDelegate).memes.count == 0{
+            cancelBarButton.isEnabled = false
+        }
     }
     
     private func initUIImagePickerControllers(){

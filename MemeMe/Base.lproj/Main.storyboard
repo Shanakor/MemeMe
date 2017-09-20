@@ -154,6 +154,7 @@
                     <connections>
                         <outlet property="bottomTextField" destination="zat-gb-FWH" id="pYR-kA-kHK"/>
                         <outlet property="cameraBarButton" destination="SEe-7B-eGC" id="8hy-I6-E1c"/>
+                        <outlet property="cancelBarButton" destination="BzX-SE-SXt" id="cuu-VI-0qY"/>
                         <outlet property="imageView" destination="uze-4j-PDo" id="kdB-3z-c0d"/>
                         <outlet property="navigationBar" destination="IRn-iZ-y5O" id="uC2-Ii-hfl"/>
                         <outlet property="shareButton" destination="VBv-CV-gdh" id="OfM-RS-dG9"/>
