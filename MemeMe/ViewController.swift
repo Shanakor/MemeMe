@@ -20,10 +20,10 @@ class ViewController: UIViewController {
     }
     
     private let memeTextAttributes: [String: Any] = [
-        NSStrokeColorAttributeName: UIColor.black,
-        NSForegroundColorAttributeName: UIColor.white,
-        NSFontAttributeName: UIFont(name: "Impact", size: 40)!,
-        NSStrokeWidthAttributeName: -2.0]
+        NSAttributedStringKey.strokeColor.rawValue: UIColor.black,
+        NSAttributedStringKey.foregroundColor.rawValue: UIColor.white,
+        NSAttributedStringKey.font.rawValue: UIFont(name: "Impact", size: 40)!,
+        NSAttributedStringKey.strokeWidth.rawValue: -2.0]
     
     fileprivate let textMargin: CGFloat = 18
     
@@ -102,7 +102,7 @@ class ViewController: UIViewController {
         NotificationCenter.default.removeObserver(self, name: .UIDeviceOrientationDidChange, object: nil)
     }
     
-    func orientationDidChange(_ notification:Notification){
+    @objc private func orientationDidChange(_ notification:Notification){
         // So repositioning is not called when the app intially starts.
         if containingImageHelperView != nil{
             repositionTextFields()
@@ -187,7 +187,7 @@ class ViewController: UIViewController {
         NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillHide, object: nil)
     }
     
-    func keyboardWillShow(_ notification: Notification){
+    @objc private func keyboardWillShow(_ notification: Notification){
         if bottomTextField.isFirstResponder{
             view.frame.origin.y -= getKeyboardHeight(notification)
         }
@@ -200,7 +200,7 @@ class ViewController: UIViewController {
         return keyboardSize.cgRectValue.height
     }
     
-    func keyboardWillHide(_ notification: Notification){
+    @objc private func keyboardWillHide(_ notification: Notification){
         view.frame.origin.y = 0
     }
     
