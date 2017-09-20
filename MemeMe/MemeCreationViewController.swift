@@ -35,7 +35,6 @@ class MemeCreationViewController: UIViewController {
     @IBOutlet weak var navigationBar: UINavigationItem!
     @IBOutlet weak var toolBar: UIToolbar!
     @IBOutlet weak var shareButton: UIBarButtonItem!
-    @IBOutlet weak var cancelBarButton: UIBarButtonItem!
     
     // MARK: Properties
     private var savedPhotosImagePicker: UIImagePickerController!
