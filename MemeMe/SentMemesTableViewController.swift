@@ -57,6 +57,12 @@ class SentMemesTableViewController: UIViewController {
         
         navigationController!.present(navController, animated: animated, completion: nil)
     }
+    
+    // MARK: IBActions
+    
+    @IBAction func presentMemeCreationViewController(_ sender: Any) {
+        presentMemeCreationViewController(animated: true)
+    }
 }
 
 extension SentMemesTableViewController: UITableViewDataSource, UITableViewDelegate{
