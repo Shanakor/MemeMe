@@ -21,11 +21,26 @@ class SentMemesTableViewController: UIViewController {
     
     fileprivate var memes: [Meme]!
     
+    // MARK: IBOutlets
+    
+    @IBOutlet weak var tableView: UITableView!
+    
     // MARK: Initialisation
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        memes = (UIApplication.shared.delegate as! AppDelegate).memes
+        initMemes()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadMemes), name: NSNotification.Name(rawValue: AppDelegate.reloadMemesNotificationKey), object: nil)
+    }
+    
+    private func initMemes(){
+        self.memes = (UIApplication.shared.delegate as! AppDelegate).memes
+    }
+    
+    @objc private func reloadMemes(){
+        initMemes()
+        tableView.reloadData()
     }
     
     override func viewWillAppear(_ animated: Bool) {

@@ -135,11 +135,16 @@ class MemeCreationViewController: UIViewController {
             
             if success{
                 self.save()
+                self.notifyObserversToReloadMemes()
                 self.dismiss(animated: true, completion: nil)
             }
         }
         
         present(activityViewController, animated: true, completion: nil)
+    }
+    
+    private func notifyObserversToReloadMemes(){
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: AppDelegate.reloadMemesNotificationKey), object: nil)
     }
     
     private func generateMemedImage() -> UIImage {
