@@ -46,8 +46,8 @@
 		D1A001FE1F6C6E25007EF9A8 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				D1C0C6C71F657FF7002B1E89 /* MemeCreationViewController.swift */,
 				D1A001FF1F6C6E46007EF9A8 /* SentMemesTableViewController.swift */,
+				D1C0C6C71F657FF7002B1E89 /* MemeCreationViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";

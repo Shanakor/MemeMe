@@ -17,6 +17,8 @@ class SentMemesTableViewController: UIViewController {
         static let memeCreationViewController = "MemeCreationViewController"
     }
     
+    private let rowHeight:CGFloat = 90
+    
     // MARK: Properties
     
     fileprivate var memes: [Meme]!
@@ -43,25 +45,15 @@ class SentMemesTableViewController: UIViewController {
         tableView.reloadData()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        if memes.count == 0{
-            presentMemeCreationViewController(animated: false)
-        }
-    }
+    // MARK: IBActions
     
-    private func presentMemeCreationViewController(animated: Bool){
+    @IBAction func presentMemeCreationViewController(_ sender: Any) {
         let viewController = storyboard!.instantiateViewController(withIdentifier: Identifiers.memeCreationViewController)
         
         // Embed ViewController in NavigationController, so the NavigationBar is shown.
         let navController = UINavigationController(rootViewController: viewController)
         
-        navigationController!.present(navController, animated: animated, completion: nil)
-    }
-    
-    // MARK: IBActions
-    
-    @IBAction func presentMemeCreationViewController(_ sender: Any) {
-        presentMemeCreationViewController(animated: true)
+        navigationController!.present(navController, animated: true, completion: nil)
     }
 }
 
@@ -81,5 +73,9 @@ extension SentMemesTableViewController: UITableViewDataSource, UITableViewDelega
         cell.textLabel!.text = "\(meme.topText), \(meme.bottomText)"
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return rowHeight
     }
 }

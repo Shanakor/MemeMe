@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Sent Memes Table View Controller-->
+        <!--Sent Memes-->
         <scene sceneID="WXZ-dx-HVE">
             <objects>
                 <viewController id="4dU-3i-Ago" customClass="SentMemesTableViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
@@ -58,7 +58,7 @@
                             <constraint firstItem="cyq-Hd-Qy3" firstAttribute="top" secondItem="6tO-uv-xNU" secondAttribute="bottom" id="THk-Au-ijc"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="yNa-ff-PpW">
+                    <navigationItem key="navigationItem" title="Sent Memes" id="yNa-ff-PpW">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Y2x-pj-Omy">
                             <connections>
                                 <action selector="presentMemeCreationViewController:" destination="4dU-3i-Ago" id="ym6-4c-SnV"/>

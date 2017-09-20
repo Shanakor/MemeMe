@@ -57,10 +57,6 @@ class MemeCreationViewController: UIViewController {
         
         shareButton.isEnabled = false
         cameraBarButton.isEnabled = (cameraImagePicker != nil)
-        
-        if (UIApplication.shared.delegate as! AppDelegate).memes.count == 0{
-            cancelBarButton.isEnabled = false
-        }
     }
     
     private func initUIImagePickerControllers(){
