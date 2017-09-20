@@ -49,8 +49,12 @@ class MemeCreationViewController: UIViewController {
         super.viewDidLoad()
         
         initUIImagePickerControllers()
+        configureUIElements()
+    }
+    
+    private func configureUIElements(){
         configureTextFields()
-
+        
         shareButton.isEnabled = false
         cameraBarButton.isEnabled = (cameraImagePicker != nil)
         
