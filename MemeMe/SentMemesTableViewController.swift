@@ -70,7 +70,7 @@ extension SentMemesTableViewController: UITableViewDataSource, UITableViewDelega
         let cell = tableView.dequeueReusableCell(withIdentifier: Identifiers.cell)!
         
         cell.imageView!.image = meme.memedImage
-        cell.textLabel!.text = "\(meme.topText), \(meme.bottomText)"
+        cell.textLabel!.text = "\(meme.topText) \(meme.bottomText)"
         
         return cell
     }
