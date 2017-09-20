@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "ViewController.repositionTextFields() -&gt; ():ViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "topTextField.constraints">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ViewController.generateMemedImage() -&gt; UIImage:ViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "containingImageHelperView!.frame">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>

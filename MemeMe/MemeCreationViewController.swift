@@ -1,5 +1,5 @@
 //
-//  MemeCreationViewController.swift
+//  CreateMemeController.swift
 //  MemeMe
 //
 //  Created by Niklas Rammerstorfer on 10/09/2017.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MemeCreationViewController: UIViewController {
+class CreateMemeController: UIViewController {
     //MARK: Constants
     private enum SourceTypes: Int{
         case camera = 0, savedPhotosAlbum
@@ -252,7 +252,7 @@ class MemeCreationViewController: UIViewController {
 }
 
 // MARK: Delegate for picking an image from the photo library
-extension MemeCreationViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
+extension CreateMemeController: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         self.imageView.image = (info[UIImagePickerControllerOriginalImage] as! UIImage)
         
@@ -273,7 +273,7 @@ extension MemeCreationViewController: UIImagePickerControllerDelegate, UINavigat
 }
 
 // MARK: Delegate for the UITextFields
-extension MemeCreationViewController: UITextFieldDelegate{
+extension CreateMemeController: UITextFieldDelegate{
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if textField.text == DefaultTexts.bottom || textField.text == DefaultTexts.top{
             textField.text = ""
