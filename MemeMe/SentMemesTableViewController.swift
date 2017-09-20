@@ -26,7 +26,9 @@ class SentMemesTableViewController: UIViewController {
         super.viewDidLoad()
         
         memes = (UIApplication.shared.delegate as! AppDelegate).memes
-        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         if memes.count == 0{
             presentMemeCreationViewController(animated: false)
         }
