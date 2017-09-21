@@ -17,7 +17,7 @@ class SentMemesCollectionViewController: UICollectionViewController {
         static let showDetailMemeViewControllerSegue = "ShowDetailFromCVC"
     }
     
-    fileprivate let maxItemsInRow: CGFloat = 3
+    private let maxItemsInRow: CGFloat = 3
     private let minimumSpacing: CGFloat = 2
     
     // MARK: Properties

@@ -11,7 +11,7 @@ import UIKit
 class CreateMemeViewController: UIViewController {
     //MARK: Constants
     private enum SourceTypes: Int{
-        case camera = 0, savedPhotosAlbum
+        case camera = 0, photoLibrary
     }
     
     fileprivate struct DefaultTexts{
@@ -60,7 +60,7 @@ class CreateMemeViewController: UIViewController {
     
     private func initUIImagePickerControllers(){
         savedPhotosImagePicker = UIImagePickerController()
-        savedPhotosImagePicker.sourceType = .savedPhotosAlbum
+        savedPhotosImagePicker.sourceType = .photoLibrary
         savedPhotosImagePicker.delegate = self
         
         if UIImagePickerController.isSourceTypeAvailable(.camera){
@@ -119,7 +119,7 @@ class CreateMemeViewController: UIViewController {
             return
         }
         
-        if button.tag == SourceTypes.savedPhotosAlbum.rawValue{
+        if button.tag == SourceTypes.photoLibrary.rawValue{
             present(savedPhotosImagePicker, animated: true, completion: nil)
         }
         else if button.tag == SourceTypes.camera.rawValue && cameraImagePicker != nil{
