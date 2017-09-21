@@ -13,6 +13,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: Constants
     
     static let reloadMemesNotificationKey = "reloadMemesNotificationKey"
+    static let showDetailMemeViewControllerSegueIdentifier = "ShowDetailMemeViewController"
     
     // MARK: Properties
     

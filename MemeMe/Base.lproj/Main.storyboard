@@ -42,6 +42,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="mJA-63-Buk" kind="show" identifier="ShowDetailMemeViewController" id="DGi-0m-I8R"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -73,10 +76,10 @@
             </objects>
             <point key="canvasLocation" x="424.80000000000001" y="36.431784107946029"/>
         </scene>
-        <!--Create Meme Controller-->
+        <!--Create Meme View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="MemeCreationViewController" id="BYZ-38-t0r" customClass="CreateMemeController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MemeCreationViewController" id="BYZ-38-t0r" customClass="CreateMemeViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -176,12 +179,26 @@
                     <view key="view" contentMode="scaleToFill" id="1FY-Hj-00w">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7ky-WP-3yh">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="YZk-i4-WQR" firstAttribute="top" secondItem="7ky-WP-3yh" secondAttribute="bottom" id="0gU-M8-LcQ"/>
+                            <constraint firstItem="7ky-WP-3yh" firstAttribute="top" secondItem="L0w-jQ-2ov" secondAttribute="bottom" id="USi-fj-9Uv"/>
+                            <constraint firstItem="7ky-WP-3yh" firstAttribute="leading" secondItem="1FY-Hj-00w" secondAttribute="leading" id="n37-pe-hSA"/>
+                            <constraint firstAttribute="trailing" secondItem="7ky-WP-3yh" secondAttribute="trailing" id="vAM-7w-kHk"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="imageView" destination="7ky-WP-3yh" id="IjC-Tz-qcE"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L2j-hF-SfN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1321" y="721"/>
+            <point key="canvasLocation" x="1321" y="807"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Oy4-kr-rHw">

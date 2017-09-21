@@ -55,6 +55,15 @@ class SentMemesTableViewController: UIViewController {
         
         navigationController!.present(navController, animated: true, completion: nil)
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier! == AppDelegate.showDetailMemeViewControllerSegueIdentifier{
+            let destController = segue.destination as! DetailMemeViewController
+            let meme = memes[tableView.indexPathForSelectedRow!.row]
+            
+            destController.image = meme.memedImage
+        }
+    }
 }
 
 extension SentMemesTableViewController: UITableViewDataSource, UITableViewDelegate{
