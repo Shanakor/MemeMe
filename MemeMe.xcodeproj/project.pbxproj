@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		D14D1F5E1F72F75F00AFFDDB /* DetailMemeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D14D1F5D1F72F75F00AFFDDB /* DetailMemeViewController.swift */; };
+		D14D1F601F73A04E00AFFDDB /* Impact.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D14D1F5F1F73A04E00AFFDDB /* Impact.ttf */; };
 		D1A002001F6C6E46007EF9A8 /* SentMemesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1A001FF1F6C6E46007EF9A8 /* SentMemesTableViewController.swift */; };
 		D1B598AC1F66B38200EDBEEF /* ScaledImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B598AB1F66B38200EDBEEF /* ScaledImageViewExtension.swift */; };
 		D1C0C6C61F657FF7002B1E89 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C0C6C51F657FF7002B1E89 /* AppDelegate.swift */; };
@@ -15,12 +16,12 @@
 		D1C0C6CB1F657FF7002B1E89 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1C0C6C91F657FF7002B1E89 /* Main.storyboard */; };
 		D1C0C6CD1F657FF7002B1E89 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D1C0C6CC1F657FF7002B1E89 /* Assets.xcassets */; };
 		D1C0C6D01F657FF7002B1E89 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1C0C6CE1F657FF7002B1E89 /* LaunchScreen.storyboard */; };
-		D1C0C6DF1F65A54D002B1E89 /* Impact.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D1C0C6DE1F65A54D002B1E89 /* Impact.ttf */; };
 		D1C0C6E31F65D5C7002B1E89 /* Meme.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C0C6E21F65D5C7002B1E89 /* Meme.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		D14D1F5D1F72F75F00AFFDDB /* DetailMemeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMemeViewController.swift; sourceTree = "<group>"; };
+		D14D1F5F1F73A04E00AFFDDB /* Impact.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Impact.ttf; path = assets/Impact.ttf; sourceTree = "<group>"; };
 		D1A001FF1F6C6E46007EF9A8 /* SentMemesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SentMemesTableViewController.swift; sourceTree = "<group>"; };
 		D1B598AB1F66B38200EDBEEF /* ScaledImageViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScaledImageViewExtension.swift; sourceTree = "<group>"; };
 		D1C0C6C21F657FF7002B1E89 /* MemeMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MemeMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -30,7 +31,6 @@
 		D1C0C6CC1F657FF7002B1E89 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D1C0C6CF1F657FF7002B1E89 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D1C0C6D11F657FF7002B1E89 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D1C0C6DE1F65A54D002B1E89 /* Impact.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Impact.ttf; sourceTree = "<group>"; };
 		D1C0C6E21F65D5C7002B1E89 /* Meme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Meme.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -90,7 +90,7 @@
 		D1C0C6DD1F65A537002B1E89 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				D1C0C6DE1F65A54D002B1E89 /* Impact.ttf */,
+				D14D1F5F1F73A04E00AFFDDB /* Impact.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -156,7 +156,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D1C0C6DF1F65A54D002B1E89 /* Impact.ttf in Resources */,
+				D14D1F601F73A04E00AFFDDB /* Impact.ttf in Resources */,
 				D1C0C6D01F657FF7002B1E89 /* LaunchScreen.storyboard in Resources */,
 				D1C0C6CD1F657FF7002B1E89 /* Assets.xcassets in Resources */,
 				D1C0C6CB1F657FF7002B1E89 /* Main.storyboard in Resources */,
