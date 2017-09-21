@@ -14,7 +14,7 @@ class SentMemesTableViewController: UIViewController {
     
     fileprivate struct Identifiers{
         static let cell = "MemeTableViewCell"
-        static let memeCreationViewController = "MemeCreationViewController"
+        static let showDetailMemeViewControllerSegue = "ShowDetailFromTVC"
     }
     
     private let rowHeight:CGFloat = 90
@@ -48,7 +48,7 @@ class SentMemesTableViewController: UIViewController {
     // MARK: IBActions
     
     @IBAction func presentMemeCreationViewController(_ sender: Any) {
-        let viewController = storyboard!.instantiateViewController(withIdentifier: Identifiers.memeCreationViewController)
+        let viewController = storyboard!.instantiateViewController(withIdentifier: AppDelegate.memeCreationViewControllerIdentifier)
         
         // Embed ViewController in NavigationController, so the NavigationBar is shown.
         let navController = UINavigationController(rootViewController: viewController)
@@ -57,7 +57,7 @@ class SentMemesTableViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier! == AppDelegate.showDetailMemeViewControllerSegueIdentifier{
+        if segue.identifier! == Identifiers.showDetailMemeViewControllerSegue{
             let destController = segue.destination as! DetailMemeViewController
             let meme = memes[tableView.indexPathForSelectedRow!.row]
             

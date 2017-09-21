@@ -10,6 +10,55 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Sent Memes Collection View Controller-->
+        <scene sceneID="eFv-wN-uvA">
+            <objects>
+                <collectionViewController id="Oy4-wV-Li7" customClass="SentMemesCollectionViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="AJ1-Zk-NIH">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="AAi-iu-kZh">
+                            <size key="itemSize" width="50" height="50"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MemeCollectionViewCell" id="E8J-Pd-Kqz">
+                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sy0-1k-maD">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        </imageView>
+                                    </subviews>
+                                </view>
+                                <constraints>
+                                    <constraint firstItem="sy0-1k-maD" firstAttribute="leading" secondItem="E8J-Pd-Kqz" secondAttribute="leading" id="Asw-LN-QKM"/>
+                                    <constraint firstItem="sy0-1k-maD" firstAttribute="top" secondItem="E8J-Pd-Kqz" secondAttribute="top" id="QgC-5d-aOx"/>
+                                    <constraint firstAttribute="trailing" secondItem="sy0-1k-maD" secondAttribute="trailing" id="azd-rK-rBO"/>
+                                    <constraint firstAttribute="bottom" secondItem="sy0-1k-maD" secondAttribute="bottom" id="cJp-aD-Zau"/>
+                                </constraints>
+                                <connections>
+                                    <segue destination="mJA-63-Buk" kind="show" identifier="ShowDetailFromCVC" id="ytr-Hv-kz9"/>
+                                </connections>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="Oy4-wV-Li7" id="Ua1-PO-yIr"/>
+                            <outlet property="delegate" destination="Oy4-wV-Li7" id="cPP-8j-6FC"/>
+                        </connections>
+                    </collectionView>
+                    <navigationItem key="navigationItem" id="k9B-vv-med"/>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zQd-TK-Y01" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="764" y="-692"/>
+        </scene>
         <!--Sent Memes-->
         <scene sceneID="WXZ-dx-HVE">
             <objects>
@@ -43,7 +92,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="mJA-63-Buk" kind="show" identifier="ShowDetailMemeViewController" id="DGi-0m-I8R"/>
+                                            <segue destination="mJA-63-Buk" kind="show" identifier="ShowDetailFromTVC" id="DGi-0m-I8R"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -166,7 +215,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1660" y="35.532233883058474"/>
+            <point key="canvasLocation" x="1641" y="483"/>
         </scene>
         <!--Detail Meme View Controller-->
         <scene sceneID="WHA-Kq-nuC">
@@ -198,7 +247,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L2j-hF-SfN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1321" y="807"/>
+            <point key="canvasLocation" x="1641" y="-254"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Oy4-kr-rHw">
@@ -230,14 +279,38 @@
                     </tabBar>
                     <connections>
                         <segue destination="GUA-4o-sVP" kind="relationship" relationship="viewControllers" id="St4-Kd-oXa"/>
+                        <segue destination="0OX-ZO-9gd" kind="relationship" relationship="viewControllers" id="6nz-TX-SXF"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hT0-tw-7Jd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1009" y="36"/>
+            <point key="canvasLocation" x="-890" y="-321"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="th4-VZ-u7G">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="0OX-ZO-9gd" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" selectedImage="collection" id="88a-EI-2p4"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="0Oh-66-Y2G">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Oy4-wV-Li7" kind="relationship" relationship="rootViewController" id="eqa-2f-oo0"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kUt-RB-XzX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="9" y="-692"/>
         </scene>
     </scenes>
     <resources>
+        <image name="collection" width="30" height="30"/>
         <image name="table" width="30" height="30"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="ytr-Hv-kz9"/>
+    </inferredMetricsTieBreakers>
 </document>
