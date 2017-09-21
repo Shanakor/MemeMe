@@ -257,7 +257,7 @@ extension CreateMemeViewController: UIImagePickerControllerDelegate, UINavigatio
         self.imageView.image = (info[UIImagePickerControllerOriginalImage] as! UIImage)
         
         repositionTextFields()
-                
+        
         shareButton.isEnabled = true
         topTextField.isHidden = false
         bottomTextField.isHidden = false
