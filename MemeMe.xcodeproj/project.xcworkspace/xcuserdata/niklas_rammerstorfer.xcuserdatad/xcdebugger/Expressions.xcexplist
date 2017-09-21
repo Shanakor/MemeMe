@@ -3,12 +3,26 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "SentMemesTableViewController.tableView(_:didSelectRowAt:):SentMemesTableViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "SentMemesCollectionViewController.getIndex(for:):SentMemesCollectionViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "indexPath.row">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "ViewController.repositionTextFields() -&gt; ():ViewController.swift">
          <PersistentStrings>
             <PersistentString
                value = "topTextField.constraints">
             </PersistentString>
          </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "SentMemesTableViewController.prepare(for:sender:):SentMemesTableViewController.swift">
       </ContextState>
       <ContextState
          contextName = "ViewController.generateMemedImage() -&gt; UIImage:ViewController.swift">

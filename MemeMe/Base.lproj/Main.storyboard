@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Sent Memes Collection View Controller-->
+        <!--Sent Memes-->
         <scene sceneID="eFv-wN-uvA">
             <objects>
                 <collectionViewController id="Oy4-wV-Li7" customClass="SentMemesCollectionViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
@@ -25,7 +25,7 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MemeCollectionViewCell" id="E8J-Pd-Kqz">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MemeCollectionViewCell" id="E8J-Pd-Kqz" customClass="MemeCollectionViewCell" customModule="MemeMe" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -44,6 +44,7 @@
                                     <constraint firstAttribute="bottom" secondItem="sy0-1k-maD" secondAttribute="bottom" id="cJp-aD-Zau"/>
                                 </constraints>
                                 <connections>
+                                    <outlet property="imageView" destination="sy0-1k-maD" id="Tr6-ql-hSg"/>
                                     <segue destination="mJA-63-Buk" kind="show" identifier="ShowDetailFromCVC" id="ytr-Hv-kz9"/>
                                 </connections>
                             </collectionViewCell>
@@ -53,7 +54,16 @@
                             <outlet property="delegate" destination="Oy4-wV-Li7" id="cPP-8j-6FC"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" id="k9B-vv-med"/>
+                    <navigationItem key="navigationItem" title="Sent Memes" id="YNl-LK-Uv6">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="jsz-AE-bl1">
+                            <connections>
+                                <action selector="presentMemeCreationViewController:" destination="Oy4-wV-Li7" id="fpR-ko-8L2"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="flowLayout" destination="AAi-iu-kZh" id="hI1-XU-gw4"/>
+                    </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zQd-TK-Y01" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
