@@ -42,6 +42,7 @@ class CreateMemeViewController: UIViewController {
     private var memedImage: UIImage?
     
     fileprivate var containingImageHelperView: UIView?
+    private var latestKeyBoardHeight: CGFloat!
     
     // MARK: System Events
     override func viewDidLoad() {
@@ -201,13 +202,19 @@ class CreateMemeViewController: UIViewController {
         NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillHide, object: nil)
     }
     
-    @objc private func keyboardWillShow(_ notification: Notification){
+    @objc fileprivate func keyboardWillShow(_ notification: Notification){
+        latestKeyBoardHeight = getKeyboardHeight(from: notification)
+
         if bottomTextField.isFirstResponder{
-            view.frame.origin.y -= getKeyboardHeight(notification)
+            moveViewUp(height: latestKeyBoardHeight)
         }
     }
     
-    private func getKeyboardHeight(_ notification: Notification) -> CGFloat{
+    fileprivate func moveViewUp(height: CGFloat){
+        view.frame.origin.y -= height
+    }
+    
+    private func getKeyboardHeight(from notification: Notification) -> CGFloat{
         let userInfo = notification.userInfo
         let keyboardSize = userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue
         
@@ -280,7 +287,13 @@ extension CreateMemeViewController: UITextFieldDelegate{
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        self.topTextField.isFirstResponder ? (_ = self.bottomTextField.becomeFirstResponder()) : (_ = textField.resignFirstResponder())
+        if topTextField.isFirstResponder{
+            bottomTextField.becomeFirstResponder()
+            moveViewUp(height: latestKeyBoardHeight)
+        }
+        else{
+            textField.resignFirstResponder()
+        }
         
         return false
     }
