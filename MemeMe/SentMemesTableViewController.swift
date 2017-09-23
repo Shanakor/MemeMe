@@ -76,10 +76,9 @@ extension SentMemesTableViewController: UITableViewDataSource, UITableViewDelega
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let meme = memes[indexPath.row]
-        let cell = tableView.dequeueReusableCell(withIdentifier: Identifiers.cell)!
+        let cell = tableView.dequeueReusableCell(withIdentifier: Identifiers.cell) as! MemeTableViewCell
         
-        cell.imageView!.image = meme.memedImage
-        cell.textLabel!.text = "\(meme.topText) \(meme.bottomText)"
+        cell.setup(with: meme)
         
         return cell
     }

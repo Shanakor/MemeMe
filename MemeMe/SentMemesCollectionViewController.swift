@@ -92,7 +92,7 @@ extension SentMemesCollectionViewController{
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Identifiers.cell, for: indexPath) as! MemeCollectionViewCell
         let meme = memes[indexPath.row]
         
-        cell.imageView.image = meme.memedImage
+        cell.setup(with: meme)
         
         return cell
     }
