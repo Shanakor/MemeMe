@@ -86,4 +86,9 @@ extension SentMemesTableViewController: UITableViewDataSource, UITableViewDelega
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return rowHeight
     }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        (UIApplication.shared.delegate as! AppDelegate).memes.remove(at: indexPath.row)
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: AppDelegate.reloadMemesNotificationKey), object: nil)
+    }
 }
