@@ -42,7 +42,11 @@ class CreateMemeViewController: UIViewController {
     private var memedImage: UIImage?
     
     fileprivate var containingImageHelperView: UIView?
+    
+    // Workaround, because the `keyBoardWillShow` method is called at different times
+    // on different operating systems.
     private var latestKeyBoardHeight: CGFloat!
+    private var hasViewMovedUp = false
     
     // MARK: System Events
     override func viewDidLoad() {
@@ -206,12 +210,23 @@ class CreateMemeViewController: UIViewController {
         latestKeyBoardHeight = getKeyboardHeight(from: notification)
 
         if bottomTextField.isFirstResponder{
-            moveViewUp(height: latestKeyBoardHeight)
+            _ = moveViewUp(height: latestKeyBoardHeight)
         }
     }
     
-    fileprivate func moveViewUp(height: CGFloat){
-        view.frame.origin.y -= height
+    /// Moves the main view up by the specified height.
+    ///
+    /// - Parameter height: The height determining, how far the view will be moved up. (Usually the keyboard height)
+    /// - Returns: If the view already has been moved up this method returns false
+    fileprivate func moveViewUp(height: CGFloat) -> Bool{
+        if !hasViewMovedUp{
+            view.frame.origin.y -= height
+            
+            hasViewMovedUp = true
+            return true
+        }
+        
+        return false
     }
     
     private func getKeyboardHeight(from notification: Notification) -> CGFloat{
@@ -223,6 +238,7 @@ class CreateMemeViewController: UIViewController {
     
     @objc private func keyboardWillHide(_ notification: Notification){
         view.frame.origin.y = 0
+        hasViewMovedUp = false
     }
     
     // MARK: Positioning TextFields
@@ -289,7 +305,7 @@ extension CreateMemeViewController: UITextFieldDelegate{
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if topTextField.isFirstResponder{
             bottomTextField.becomeFirstResponder()
-            moveViewUp(height: latestKeyBoardHeight)
+            _ = moveViewUp(height: latestKeyBoardHeight)
         }
         else{
             textField.resignFirstResponder()
