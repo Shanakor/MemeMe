@@ -31,6 +31,7 @@ extension UIImageView{
             let aspect = fmin(scaleWidth, scaleHeight)
             
             var imageRect = CGRect(x: 0, y: 0, width: imageSize.width * aspect, height: imageSize.height * aspect)
+            
             // Center image
             imageRect.origin.x = (imageViewSize.width - imageRect.size.width) / 2
             imageRect.origin.y = (imageViewSize.height - imageRect.size.height) / 2

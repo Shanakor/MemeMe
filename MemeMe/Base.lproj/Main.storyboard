@@ -251,6 +251,13 @@
                             <constraint firstAttribute="trailing" secondItem="7ky-WP-3yh" secondAttribute="trailing" id="vAM-7w-kHk"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="TFF-NU-gXZ">
+                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="Fwb-js-UqF">
+                            <connections>
+                                <action selector="showCreateMemesViewController:" destination="mJA-63-Buk" id="vaf-sj-mi0"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="imageView" destination="7ky-WP-3yh" id="IjC-Tz-qcE"/>
                     </connections>

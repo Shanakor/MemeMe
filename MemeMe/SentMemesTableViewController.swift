@@ -48,10 +48,7 @@ class SentMemesTableViewController: UIViewController {
     // MARK: IBActions
     
     @IBAction func presentMemeCreationViewController(_ sender: Any) {
-        let viewController = storyboard!.instantiateViewController(withIdentifier: AppDelegate.memeCreationViewControllerIdentifier)
-        
-        // Embed ViewController in NavigationController, so the NavigationBar is shown.
-        let navController = UINavigationController(rootViewController: viewController)
+        let navController = CreateMemeViewController.createNavigationController(with: nil, storyboard: self.storyboard!)
         
         navigationController!.present(navController, animated: true, completion: nil)
     }
@@ -61,7 +58,7 @@ class SentMemesTableViewController: UIViewController {
             let destController = segue.destination as! DetailMemeViewController
             let meme = memes[tableView.indexPathForSelectedRow!.row]
             
-            destController.image = meme.memedImage
+            destController.meme = meme
         }
     }
 }

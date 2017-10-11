@@ -27,6 +27,9 @@ class CreateMemeViewController: UIViewController {
     
     fileprivate let textMargin: CGFloat = 18
     
+    static let storyboardIdentifier = "MemeCreationViewController"
+
+    
     // MARK: IBOutlets
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var topTextField: UITextField!
@@ -37,6 +40,9 @@ class CreateMemeViewController: UIViewController {
     @IBOutlet weak var shareButton: UIBarButtonItem!
     
     // MARK: Properties
+    
+    private var meme: Meme?
+    
     private var savedPhotosImagePicker: UIImagePickerController!
     private var cameraImagePicker: UIImagePickerController?
     private var memedImage: UIImage?
@@ -48,7 +54,7 @@ class CreateMemeViewController: UIViewController {
     private var latestKeyBoardHeight: CGFloat!
     private var hasViewMovedUp = false
     
-    // MARK: System Events
+    // MARK: Initialisation
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -76,8 +82,8 @@ class CreateMemeViewController: UIViewController {
     }
     
     fileprivate func configureTextFields(){
-        configure(textField: topTextField, text: DefaultTexts.top)
-        configure(textField: bottomTextField, text: DefaultTexts.bottom)
+        configure(textField: topTextField, text: meme != nil ? meme!.topText : DefaultTexts.top)
+        configure(textField: bottomTextField, text: meme != nil ? meme!.bottomText : DefaultTexts.bottom)
     }
     
     private func configure(textField: UITextField, text: String){
@@ -116,6 +122,15 @@ class CreateMemeViewController: UIViewController {
         if containingImageHelperView != nil{
             repositionTextFields()
         }
+    }
+    
+    func configureUIAfterImageSet(){
+        repositionTextFields()
+        
+        shareButton.isEnabled = true
+        topTextField.isHidden = false
+        bottomTextField.isHidden = false
+        topTextField.becomeFirstResponder()
     }
     
     // MARK: IBActions
@@ -272,6 +287,17 @@ class CreateMemeViewController: UIViewController {
         containingImageHelperView?.addSubview(bottomTextField)
         containingImageHelperView!.addConstraints([leadingConstraint, trailingConstraint, bottomConstraint])
     }
+    
+    // MARK: Navigation
+    
+    public static func createNavigationController(with meme:Meme?, storyboard: UIStoryboard) -> UINavigationController{
+        let viewController = storyboard.instantiateViewController(withIdentifier: CreateMemeViewController.storyboardIdentifier) as! CreateMemeViewController
+        
+        viewController.meme = meme
+    
+        // Embed ViewController in NavigationController, so the NavigationBar is shown.
+        return UINavigationController(rootViewController: viewController)
+    }
 }
 
 // MARK: Delegate for picking an image from the photo library
@@ -279,13 +305,8 @@ extension CreateMemeViewController: UIImagePickerControllerDelegate, UINavigatio
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         self.imageView.image = (info[UIImagePickerControllerOriginalImage] as! UIImage)
         
-        repositionTextFields()
-        
-        shareButton.isEnabled = true
-        topTextField.isHidden = false
-        bottomTextField.isHidden = false
-        topTextField.becomeFirstResponder()
-        
+        configureUIAfterImageSet()
+
         dismiss(animated: true, completion: nil)
     }
     

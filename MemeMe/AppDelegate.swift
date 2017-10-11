@@ -13,7 +13,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: Constants
     
     static let reloadMemesNotificationKey = "reloadMemesNotificationKey"
-    static let memeCreationViewControllerIdentifier = "MemeCreationViewController"
     
     // MARK: Properties
     

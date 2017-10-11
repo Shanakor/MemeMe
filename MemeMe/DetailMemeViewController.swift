@@ -12,7 +12,7 @@ class DetailMemeViewController: UIViewController {
     
     // MARK: Properties
     
-    var image: UIImage?
+    var meme: Meme!
     
     // MARK: IBOutlets
     
@@ -23,7 +23,7 @@ class DetailMemeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        imageView.image = image
+        imageView.image = meme.memedImage
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -32,5 +32,20 @@ class DetailMemeViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         tabBarController!.tabBar.isHidden = false
+    }
+    
+    // MARK: IBActions
+    
+    @IBAction func showCreateMemesViewController(_ sender: Any) {
+        let navController = CreateMemeViewController.createNavigationController(with: meme, storyboard: self.storyboard!)
+        
+        navigationController!.present(navController, animated: true, completion: {
+            // Workaround, because for some reason the containingImageHelperView is calculated wrongly
+            // otherwise.
+            let createMemeViewController = self.navigationController!.visibleViewController as! CreateMemeViewController
+            
+            createMemeViewController.imageView.image = self.meme.originalImage
+            createMemeViewController.configureUIAfterImageSet()
+        })
     }
 }
